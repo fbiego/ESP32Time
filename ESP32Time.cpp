@@ -170,6 +170,14 @@ String ESP32Time::getDate(bool mode){
 	return String(s);
 }
 
+/*!
+    @brief  get the current milliseconds as long
+*/
+long ESP32Time::getMillis(){
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return tv.tv_sec;
+}
 
 /*!
     @brief  get the current seconds as int
