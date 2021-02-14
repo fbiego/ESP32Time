@@ -42,6 +42,7 @@ void loop() {
 //  Serial.println(rtc.getTimeDate());      //  (String) 15:24:38 Sun, Jan 17 2021
 //  Serial.println(rtc.getTimeDate(true));  //  (String) 15:24:38 Sunday, January 17 2021
 //
+//  Serial.println(rtc.getMillis());        //  (long)    1609459200
 //  Serial.println(rtc.getSecond());        //  (int)     38    (0-59)
 //  Serial.println(rtc.getMinute());        //  (int)     24    (0-59)
 //  Serial.println(rtc.getHour());          //  (int)     3     (0-12)
