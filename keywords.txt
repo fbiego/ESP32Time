@@ -7,6 +7,7 @@ getDateTime		KEYWORD2
 getTimeDate		KEYWORD2
 getDate			KEYWORD2
 getAmPm			KEYWORD2
+getMillis		KEYWORD2
 getSecond		KEYWORD2
 getMinute		KEYWORD2
 getHour			KEYWORD2
