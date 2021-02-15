@@ -176,6 +176,24 @@ String ESP32Time::getDate(bool mode){
 long ESP32Time::getMillis(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
+	return tv.tv_usec/1000;
+}
+
+/*!
+    @brief  get the current microseconds as long
+*/
+long ESP32Time::getMicros(){
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return tv.tv_usec;
+}
+
+/*!
+    @brief  get the current epoch seconds as long
+*/
+long ESP32Time::getEpoch(){
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
 	return tv.tv_sec;
 }
 
