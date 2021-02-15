@@ -42,7 +42,9 @@ class ESP32Time {
 		String getDate(bool mode = false);
 		String getAmPm(bool lowercase = false);
 		
+		long getEpoch();
 		long getMillis();
+		long getMicros();
 		int getSecond();
 		int getMinute();
 		int getHour(bool mode = false);
