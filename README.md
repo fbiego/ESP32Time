@@ -18,7 +18,9 @@ getDateTime(true)  //  (String) Sunday, January 17 2021 15:24:38
 getTimeDate()      //  (String) 15:24:38 Sun, Jan 17 2021
 getTimeDate(true)  //  (String) 15:24:38 Sunday, January 17 2021
 
-getMillis()        //  (long)    1609459200
+getMicros()        //  (long)    723546
+getMillis()        //  (long)    723
+getEpoch()         //  (long)    1609459200
 getSecond()        //  (int)     38    (0-59)
 getMinute()        //  (int)     24    (0-59)
 getHour()          //  (int)     3     (0-12)
