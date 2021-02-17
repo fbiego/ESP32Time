@@ -1,5 +1,5 @@
 # ESP32Time
-An Arduino library for setting and retrieving internal RTC time on ESP32 board
+An Arduino library for setting and retrieving internal RTC time on ESP32 boards
 
 Available on [`Arduino Library Manager`](https://www.arduinolibraries.info/libraries/esp32-time)
 
