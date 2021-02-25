@@ -1,7 +1,7 @@
 # ESP32Time
 An Arduino library for setting and retrieving internal RTC time on ESP32 boards
 
-[![arduino-library-badge](https://www.ardu-badge.com/badge/ESP32Time.svg?)](https://www.ardu-badge.com/IRremoteESP8266)
+[![arduino-library-badge](https://www.ardu-badge.com/badge/ESP32Time.svg?)](https://www.ardu-badge.com/ESP32Time)
 
 ## Functions
 
