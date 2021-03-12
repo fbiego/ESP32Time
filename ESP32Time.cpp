@@ -42,7 +42,7 @@ ESP32Time::ESP32Time(){
 	@param  hr
             hour of day (0-23)
     @param  mt
-            month (0-31)
+            month (1-12)
 	@param  yr
             year ie 2021
     @param  ms
