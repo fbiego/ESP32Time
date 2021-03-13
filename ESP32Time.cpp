@@ -39,11 +39,13 @@ ESP32Time::ESP32Time(){
             second (0-59)
     @param  mn
             minute (0-59)
-	@param  hr
+    @param  hr
             hour of day (0-23)
+    @param  dy
+            day of month (1-31)
     @param  mt
             month (1-12)
-	@param  yr
+    @param  yr
             year ie 2021
     @param  ms
             microseconds (optional)
