@@ -29,9 +29,7 @@
 /*!
     @brief  Constructor for ESP32Time
 */
-ESP32Time::ESP32Time(){
-	//setTime();	// set default time on init
-}
+ESP32Time::ESP32Time(){}
 
 /*!
     @brief  set the internal RTC time
