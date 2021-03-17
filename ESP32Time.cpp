@@ -30,7 +30,7 @@
     @brief  Constructor for ESP32Time
 */
 ESP32Time::ESP32Time(){
-	setTime();	// set default time on init
+	//setTime();	// set default time on init
 }
 
 /*!
