@@ -8,7 +8,6 @@ An Arduino library for setting and retrieving internal RTC time on ESP32 boards
 ```
 setTime(30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
 setTime(1609459200);  // 1st Jan 2021 00:00:00
-setTime();            // default 1st Jan 2021 00:00:00
 
 getTime()          //  (String) 15:24:38
 getDate()          //  (String) Sun, Jan 17 2021
