@@ -31,6 +31,12 @@ void setup() {
   rtc.setTime(30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
   //rtc.setTime(1609459200);  // 1st Jan 2021 00:00:00
 
+/*---------set with NTP---------------*/
+//  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+//  struct tm timeinfo;
+//  if (getLocalTime(&timeinfo)){
+//    rtc.setTimeStruct(timeinfo); 
+//  }
 }
 
 void loop() {

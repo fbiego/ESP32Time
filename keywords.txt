@@ -2,6 +2,7 @@ ESP32Time		KEYWORD1
 
 setTime			KEYWORD2
 getTime			KEYWORD2
+setTimeStruct	KEYWORD2
 getTimeStruct	KEYWORD2
 getDateTime		KEYWORD2
 getTimeDate		KEYWORD2

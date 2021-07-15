@@ -1,6 +1,6 @@
 {
   "name": "ESP32Time",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": "Arduino, ESP32, Time, Internal RTC",
   "description": "An Arduino library for setting and retrieving internal RTC time on ESP32 boards",
   "repository":
