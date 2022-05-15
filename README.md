@@ -6,6 +6,8 @@ An Arduino library for setting and retrieving internal RTC time on ESP32 boards
 ## Functions
 
 ```
+ESP32Time rtc(offset); // create an instance with a specifed offset in seconds
+rtc.offset;	// get or modify the current offset
 setTime(30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
 setTime(1609459200);  // 1st Jan 2021 00:00:00
 setTimeStruct(time);	// set with time struct
@@ -21,6 +23,7 @@ getTimeDate(true)  //  (String) 15:24:38 Sunday, January 17 2021
 getMicros()        //  (long)    723546
 getMillis()        //  (long)    723
 getEpoch()         //  (long)    1609459200
+getLocalEpoch()    //  (long)    1609459200 // local epoch without offset
 getSecond()        //  (int)     38    (0-59)
 getMinute()        //  (int)     24    (0-59)
 getHour()          //  (int)     3     (0-12)

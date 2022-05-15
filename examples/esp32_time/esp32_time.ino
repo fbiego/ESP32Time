@@ -24,12 +24,14 @@
 
 #include <ESP32Time.h>
 
-ESP32Time rtc;
+//ESP32Time rtc;
+ESP32Time rtc(3600);  // offset in seconds GMT+1
 
 void setup() {
   Serial.begin(115200);
   rtc.setTime(30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
   //rtc.setTime(1609459200);  // 1st Jan 2021 00:00:00
+  //rtc.offset = 7200; // change offset value
 
 /*---------set with NTP---------------*/
 //  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
@@ -63,6 +65,7 @@ void loop() {
 //  Serial.println(rtc.getMonth());         //  (int)     0     (0-11)
 //  Serial.println(rtc.getYear());          //  (int)     2021
 
+//  Serial.println(rtc.getLocalEpoch());         //  (long)    1609459200 epoch without offset
   Serial.println(rtc.getTime("%A, %B %d %Y %H:%M:%S"));   // (String) returns time with specified format 
   // formating options  http://www.cplusplus.com/reference/ctime/strftime/
 

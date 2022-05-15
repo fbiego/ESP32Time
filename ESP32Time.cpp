@@ -32,6 +32,15 @@
 ESP32Time::ESP32Time(){}
 
 /*!
+    @brief  Constructor for ESP32Time
+	@param  offest
+            gmt offset in seconds
+*/
+ESP32Time::ESP32Time(long offset){
+	this->offset = offset;
+}
+
+/*!
     @brief  set the internal RTC time
     @param  sc
             second (0-59)
@@ -92,7 +101,10 @@ void ESP32Time::setTime(long epoch, int ms) {
 tm ESP32Time::getTimeStruct(){
   struct tm timeinfo;
   getLocalTime(&timeinfo);
-  return timeinfo;
+  time_t tt = mktime (&timeinfo);
+  tt = tt + offset;
+  struct tm * tn = localtime(&tt);;
+  return *tn;
 }
 
 /*!
@@ -202,6 +214,14 @@ long ESP32Time::getMicros(){
     @brief  get the current epoch seconds as long
 */
 long ESP32Time::getEpoch(){
+	struct tm timeinfo = getTimeStruct();
+	return mktime(&timeinfo);
+}
+
+/*!
+    @brief  get the current epoch seconds as long from the rtc without offset
+*/
+long ESP32Time::getLocalEpoch(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	return tv.tv_sec;
