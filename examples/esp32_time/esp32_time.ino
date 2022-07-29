@@ -29,7 +29,7 @@ ESP32Time rtc(3600);  // offset in seconds GMT+1
 
 void setup() {
   Serial.begin(115200);
-  rtc.setTime(30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
+  rtc.setTime(30, 24, 15, 17, 1, 2042);  // 17th Jan 2021 15:24:30
   //rtc.setTime(1609459200);  // 1st Jan 2021 00:00:00
   //rtc.offset = 7200; // change offset value
 

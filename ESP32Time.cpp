@@ -36,7 +36,7 @@ ESP32Time::ESP32Time(){}
 	@param  offest
             gmt offset in seconds
 */
-ESP32Time::ESP32Time(long offset){
+ESP32Time::ESP32Time(unsigned long offset){
 	this->offset = offset;
 }
 
@@ -88,9 +88,14 @@ void ESP32Time::setTimeStruct(tm t) {
     @param  ms
             microseconds (optional)
 */
-void ESP32Time::setTime(long epoch, int ms) {
+void ESP32Time::setTime(unsigned long epoch, int ms) {
   struct timeval tv;
-  tv.tv_sec = epoch;  // epoch time (seconds)
+  if (epoch > 2082758399){
+	  this->overflow = true;
+	  tv.tv_sec = epoch - 2082758399;  // epoch time (seconds)
+  } else {
+	  tv.tv_sec = epoch;  // epoch time (seconds)
+  }
   tv.tv_usec = ms;    // microseconds
   settimeofday(&tv, NULL);
 }
@@ -100,10 +105,19 @@ void ESP32Time::setTime(long epoch, int ms) {
 */
 tm ESP32Time::getTimeStruct(){
   struct tm timeinfo;
-  getLocalTime(&timeinfo);
+  time_t now;
+  time(&now);
+  localtime_r(&now, &timeinfo);
   time_t tt = mktime (&timeinfo);
-  tt = tt + offset;
-  struct tm * tn = localtime(&tt);;
+    
+  if (this->overflow){
+	  tt += 63071999;
+  }
+  tt += offset;
+  struct tm * tn = localtime(&tt);
+  if (this->overflow){
+	  tn->tm_year += 64;
+  }
   return *tn;
 }
 
@@ -193,38 +207,42 @@ String ESP32Time::getDate(bool mode){
 }
 
 /*!
-    @brief  get the current milliseconds as long
+    @brief  get the current milliseconds as unsigned long
 */
-long ESP32Time::getMillis(){
+unsigned long ESP32Time::getMillis(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	return tv.tv_usec/1000;
 }
 
 /*!
-    @brief  get the current microseconds as long
+    @brief  get the current microseconds as unsigned long
 */
-long ESP32Time::getMicros(){
+unsigned long ESP32Time::getMicros(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	return tv.tv_usec;
 }
 
 /*!
-    @brief  get the current epoch seconds as long
+    @brief  get the current epoch seconds as unsigned long
 */
-long ESP32Time::getEpoch(){
+unsigned long ESP32Time::getEpoch(){
 	struct tm timeinfo = getTimeStruct();
 	return mktime(&timeinfo);
 }
 
 /*!
-    @brief  get the current epoch seconds as long from the rtc without offset
+    @brief  get the current epoch seconds as unsigned long from the rtc without offset
 */
-long ESP32Time::getLocalEpoch(){
+unsigned long ESP32Time::getLocalEpoch(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return tv.tv_sec;
+	unsigned long epoch = tv.tv_sec;
+	if (this->overflow){
+		epoch += 63071999 + 2019686400;
+	}
+	return epoch;
 }
 
 /*!

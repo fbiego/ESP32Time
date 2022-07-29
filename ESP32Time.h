@@ -31,8 +31,8 @@ class ESP32Time {
 	
 	public:
 		ESP32Time();
-		ESP32Time(long offset);
-		void setTime(long epoch = 1609459200, int ms = 0);	// default (1609459200) = 1st Jan 2021
+		ESP32Time(unsigned long offset);
+		void setTime(unsigned long epoch = 1609459200, int ms = 0);	// default (1609459200) = 1st Jan 2021
 		void setTime(int sc, int mn, int hr, int dy, int mt, int yr, int ms = 0);
 		void setTimeStruct(tm t);
 		tm getTimeStruct();
@@ -44,9 +44,9 @@ class ESP32Time {
 		String getDate(bool mode = false);
 		String getAmPm(bool lowercase = false);
 		
-		long getEpoch();
-		long getMillis();
-		long getMicros();
+		unsigned long getEpoch();
+		unsigned long getMillis();
+		unsigned long getMicros();
 		int getSecond();
 		int getMinute();
 		int getHour(bool mode = false);
@@ -56,8 +56,11 @@ class ESP32Time {
 		int getMonth();
 		int getYear();
 		
-		long offset;
-		long getLocalEpoch();
+		unsigned long offset;
+		unsigned long getLocalEpoch();
+		
+	private:
+		bool overflow;
 		
 
 };

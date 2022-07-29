@@ -20,16 +20,16 @@ getDateTime(true)  //  (String) Sunday, January 17 2021 15:24:38
 getTimeDate()      //  (String) 15:24:38 Sun, Jan 17 2021
 getTimeDate(true)  //  (String) 15:24:38 Sunday, January 17 2021
 
-getMicros()        //  (long)    723546
-getMillis()        //  (long)    723
-getEpoch()         //  (long)    1609459200
-getLocalEpoch()    //  (long)    1609459200 // local epoch without offset
+getMicros()        //  (unsigned long)    723546
+getMillis()        //  (unsigned long)    723
+getEpoch()         //  (unsigned long)    1609459200
+getLocalEpoch()    //  (unsigned long)    1609459200 // local epoch without offset
 getSecond()        //  (int)     38    (0-59)
 getMinute()        //  (int)     24    (0-59)
 getHour()          //  (int)     3     (0-12)
 getHour(true)      //  (int)     15    (0-23)
 getAmPm()          //  (String)  pm
-getAmPm(true)      //  (String)  PM
+getAmPm(false)     //  (String)  PM
 getDay()           //  (int)     17    (1-31)
 getDayofWeek()     //  (int)     0     (0-6)
 getDayofYear()     //  (int)     16    (0-365)
