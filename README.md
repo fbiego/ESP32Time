@@ -2,6 +2,7 @@
 An Arduino library for setting and retrieving internal RTC time on ESP32 boards
 
 [![arduino-library-badge](https://www.ardu-badge.com/badge/ESP32Time.svg?)](https://www.arduinolibraries.info/libraries/esp32-time)
+[![PlatformIO Registry](https://badges.registry.platformio.org/packages/fbiego/library/ESP32Time.svg)](https://registry.platformio.org/libraries/fbiego/ESP32Time)
 
 ## Functions
 
