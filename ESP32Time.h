@@ -60,7 +60,7 @@ class ESP32Time {
 		unsigned long getLocalEpoch();
 		
 	private:
-		bool overflow;
+		bool overflow = false;
 		
 
 };
