@@ -60,7 +60,7 @@ ESP32Time::ESP32Time(unsigned long offset){
 void ESP32Time::setTime(int sc, int mn, int hr, int dy, int mt, int yr, int ms) {
   // seconds, minute, hour, day, month, year $ microseconds(optional)
   // ie setTime(20, 34, 8, 1, 4, 2021) = 8:34:20 1/4/2021
-  struct tm t = {0};        // Initalize to all 0's
+  struct tm t = {0, 0, 0, 0, 0, 0, 0, 0, 0};      // Initalize to all 0's
   t.tm_year = yr - 1900;    // This is year-1900, so 121 = 2021
   t.tm_mon = mt - 1;
   t.tm_mday = dy;
