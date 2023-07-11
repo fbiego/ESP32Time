@@ -36,7 +36,7 @@ ESP32Time::ESP32Time(){}
 	@param  offest
             gmt offset in seconds
 */
-ESP32Time::ESP32Time(unsigned long offset){
+ESP32Time::ESP32Time(long offset){
 	this->offset = offset;
 }
 
@@ -113,7 +113,11 @@ tm ESP32Time::getTimeStruct(){
   if (this->overflow){
 	  tt += 63071999;
   }
-  tt += offset;
+  if (offset > 0){
+	tt += (unsigned long) offset;
+  } else {
+	tt -= (unsigned long) (offset * -1);
+  }
   struct tm * tn = localtime(&tt);
   if (this->overflow){
 	  tn->tm_year += 64;
