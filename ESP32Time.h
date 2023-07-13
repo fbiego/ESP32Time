@@ -59,8 +59,6 @@ class ESP32Time {
 		long offset;
 		unsigned long getLocalEpoch();
 		
-	private:
-		bool overflow = false;
 		
 
 };

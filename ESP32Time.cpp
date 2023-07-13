@@ -26,10 +26,13 @@
 #include "time.h"
 #include <sys/time.h>
 
+RTC_DATA_ATTR static bool overflow;
+
 /*!
     @brief  Constructor for ESP32Time
 */
-ESP32Time::ESP32Time(){}
+ESP32Time::ESP32Time(){
+}
 
 /*!
     @brief  Constructor for ESP32Time
@@ -91,9 +94,10 @@ void ESP32Time::setTimeStruct(tm t) {
 void ESP32Time::setTime(unsigned long epoch, int ms) {
   struct timeval tv;
   if (epoch > 2082758399){
-	  this->overflow = true;
+	  overflow = true;
 	  tv.tv_sec = epoch - 2082758399;  // epoch time (seconds)
   } else {
+	  overflow = false;
 	  tv.tv_sec = epoch;  // epoch time (seconds)
   }
   tv.tv_usec = ms;    // microseconds
@@ -110,7 +114,7 @@ tm ESP32Time::getTimeStruct(){
   localtime_r(&now, &timeinfo);
   time_t tt = mktime (&timeinfo);
     
-  if (this->overflow){
+  if (overflow){
 	  tt += 63071999;
   }
   if (offset > 0){
@@ -119,7 +123,7 @@ tm ESP32Time::getTimeStruct(){
 	tt -= (unsigned long) (offset * -1);
   }
   struct tm * tn = localtime(&tt);
-  if (this->overflow){
+  if (overflow){
 	  tn->tm_year += 64;
   }
   return *tn;
@@ -243,7 +247,7 @@ unsigned long ESP32Time::getLocalEpoch(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	unsigned long epoch = tv.tv_sec;
-	if (this->overflow){
+	if (overflow){
 		epoch += 63071999 + 2019686400;
 	}
 	return epoch;
