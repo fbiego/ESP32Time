@@ -26,7 +26,12 @@
 #include "time.h"
 #include <sys/time.h>
 
+#ifdef RTC_DATA_ATTR
 RTC_DATA_ATTR static bool overflow;
+#else
+static bool overflow;
+#endif
+
 
 /*!
     @brief  Constructor for ESP32Time
