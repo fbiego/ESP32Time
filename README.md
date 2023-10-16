@@ -29,8 +29,8 @@ getSecond()        //  (int)     38    (0-59)
 getMinute()        //  (int)     24    (0-59)
 getHour()          //  (int)     3     (0-12)
 getHour(true)      //  (int)     15    (0-23)
-getAmPm()          //  (String)  pm
-getAmPm(false)     //  (String)  PM
+getAmPm()          //  (String)  PM
+getAmPm(true)     //  (String)  pm
 getDay()           //  (int)     17    (1-31)
 getDayofWeek()     //  (int)     0     (0-6)
 getDayofYear()     //  (int)     16    (0-365)
