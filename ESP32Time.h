@@ -56,7 +56,7 @@ class ESP32Time {
 		int getMonth();
 		int getYear();
 		
-		long offset;
+		long offset = 0;
 		unsigned long getLocalEpoch();
 		
 		
