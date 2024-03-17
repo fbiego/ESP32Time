@@ -52,7 +52,7 @@ void loop() {
 //  Serial.println(rtc.getEpoch());         //  (unsigned long)    1609459200
 //  Serial.println(rtc.getSecond());        //  (int)     38    (0-59)
 //  Serial.println(rtc.getMinute());        //  (int)     24    (0-59)
-//  Serial.println(rtc.getHour());          //  (int)     3     (0-12)
+//  Serial.println(rtc.getHour());          //  (int)     3     (1-12)
 //  Serial.println(rtc.getHour(true));      //  (int)     15    (0-23)
 //  Serial.println(rtc.getAmPm());          //  (String)  pm
 //  Serial.println(rtc.getAmPm(true));      //  (String)  PM

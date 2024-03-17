@@ -27,7 +27,7 @@ getEpoch()         //  (unsigned long)    1609459200
 getLocalEpoch()    //  (unsigned long)    1609459200 // local epoch without offset
 getSecond()        //  (int)     38    (0-59)
 getMinute()        //  (int)     24    (0-59)
-getHour()          //  (int)     3     (0-12)
+getHour()          //  (int)     3     (1-12)
 getHour(true)      //  (int)     15    (0-23)
 getAmPm()          //  (String)  PM
 getAmPm(true)     //  (String)  pm

@@ -278,7 +278,7 @@ int ESP32Time::getMinute(){
     @brief  get the current hour as int
 	@param	mode
 			true = 24 hour mode (0-23)
-			false = 12 hour mode (0-12)
+			false = 12 hour mode (1-12)
 */
 int ESP32Time::getHour(bool mode){
 	struct tm timeinfo = getTimeStruct();
@@ -292,6 +292,10 @@ int ESP32Time::getHour(bool mode){
 		if (hour > 12)
 		{
 			return timeinfo.tm_hour-12;
+		}
+		else if (hour == 0)
+		{
+			return 12; // 12 am
 		}
 		else
 		{
