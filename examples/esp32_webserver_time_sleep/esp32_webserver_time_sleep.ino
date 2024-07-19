@@ -1,3 +1,13 @@
+/* 
+
+Power ON the ESP32, select ESP32-RTC-Logger network on your phone and enter the password.
+
+Visit 192.168.4.1 using your browser and press syncTime.
+
+This will run 'rtc.setTime(epochTime)' and send the ESP32 to sleep for the duration of 'TIME_TO_SLEEP'. 
+
+*/
+
 #include <ESP32Time.h>
 #include <WiFi.h>
 
