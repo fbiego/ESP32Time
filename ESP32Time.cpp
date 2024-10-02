@@ -65,7 +65,7 @@ ESP32Time::ESP32Time(long offset){
     @param  ms
             microseconds (optional)
 */
-void ESP32Time::setTime(int sc, int mn, int hr, int dy, int mt, int yr, int ms) {
+void ESP32Time::setTime(int sc, int mn, int hr, int dy, int mt, int yr, int ms) const {
   // seconds, minute, hour, day, month, year $ microseconds(optional)
   // ie setTime(20, 34, 8, 1, 4, 2021) = 8:34:20 1/4/2021
   struct tm t = {0, 0, 0, 0, 0, 0, 0, 0, 0};      // Initalize to all 0's
@@ -84,7 +84,7 @@ void ESP32Time::setTime(int sc, int mn, int hr, int dy, int mt, int yr, int ms) 
 	@param	tm
 			time struct
 */
-void ESP32Time::setTimeStruct(tm t) { 
+void ESP32Time::setTimeStruct(tm t) const { 
 	time_t timeSinceEpoch = mktime(&t); 
 	setTime(timeSinceEpoch, 0); 
 }
@@ -96,7 +96,7 @@ void ESP32Time::setTimeStruct(tm t) {
     @param  ms
             microseconds (optional)
 */
-void ESP32Time::setTime(unsigned long epoch, int ms) {
+void ESP32Time::setTime(unsigned long epoch, int ms) const {
   struct timeval tv;
   if (epoch > 2082758399){
 	  overflow = true;
@@ -112,7 +112,7 @@ void ESP32Time::setTime(unsigned long epoch, int ms) {
 /*!
     @brief  get the internal RTC time as a tm struct
 */
-tm ESP32Time::getTimeStruct(){
+tm ESP32Time::getTimeStruct() const {
   struct tm timeinfo;
   time_t now;
   time(&now);
@@ -140,7 +140,7 @@ tm ESP32Time::getTimeStruct(){
             true = Long date format
 			false = Short date format
 */
-String ESP32Time::getDateTime(bool mode){
+String ESP32Time::getDateTime(bool mode) const {
 	struct tm timeinfo = getTimeStruct();
 	char s[51];
 	if (mode)
@@ -160,7 +160,7 @@ String ESP32Time::getDateTime(bool mode){
             true = Long date format
 			false = Short date format
 */
-String ESP32Time::getTimeDate(bool mode){
+String ESP32Time::getTimeDate(bool mode) const {
 	struct tm timeinfo = getTimeStruct();
 	char s[51];
 	if (mode)
@@ -177,7 +177,7 @@ String ESP32Time::getTimeDate(bool mode){
 /*!
     @brief  get the time as an Arduino String object
 */
-String ESP32Time::getTime(){
+String ESP32Time::getTime() const {
 	struct tm timeinfo = getTimeStruct();
 	char s[51];
 	strftime(s, 50, "%H:%M:%S", &timeinfo);
@@ -190,7 +190,7 @@ String ESP32Time::getTime(){
 			time format 
 			http://www.cplusplus.com/reference/ctime/strftime/
 */
-String ESP32Time::getTime(String format){
+String ESP32Time::getTime(String format) const {
 	struct tm timeinfo = getTimeStruct();
 	char s[128];
 	char c[128];
@@ -205,7 +205,7 @@ String ESP32Time::getTime(String format){
             true = Long date format
 			false = Short date format
 */
-String ESP32Time::getDate(bool mode){
+String ESP32Time::getDate(bool mode) const {
 	struct tm timeinfo = getTimeStruct();
 	char s[51];
 	if (mode)
@@ -222,7 +222,7 @@ String ESP32Time::getDate(bool mode){
 /*!
     @brief  get the current milliseconds as unsigned long
 */
-unsigned long ESP32Time::getMillis(){
+unsigned long ESP32Time::getMillis() const {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	return tv.tv_usec/1000;
@@ -231,7 +231,7 @@ unsigned long ESP32Time::getMillis(){
 /*!
     @brief  get the current microseconds as unsigned long
 */
-unsigned long ESP32Time::getMicros(){
+unsigned long ESP32Time::getMicros() const {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	return tv.tv_usec;
@@ -240,7 +240,7 @@ unsigned long ESP32Time::getMicros(){
 /*!
     @brief  get the current epoch seconds as unsigned long
 */
-unsigned long ESP32Time::getEpoch(){
+unsigned long ESP32Time::getEpoch() const {
 	struct tm timeinfo = getTimeStruct();
 	return mktime(&timeinfo);
 }
@@ -248,7 +248,7 @@ unsigned long ESP32Time::getEpoch(){
 /*!
     @brief  get the current epoch seconds as unsigned long from the rtc without offset
 */
-unsigned long ESP32Time::getLocalEpoch(){
+unsigned long ESP32Time::getLocalEpoch() const {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	unsigned long epoch = tv.tv_sec;
@@ -261,7 +261,7 @@ unsigned long ESP32Time::getLocalEpoch(){
 /*!
     @brief  get the current seconds as int
 */
-int ESP32Time::getSecond(){
+int ESP32Time::getSecond() const {
 	struct tm timeinfo = getTimeStruct();
 	return timeinfo.tm_sec;
 }
@@ -269,7 +269,7 @@ int ESP32Time::getSecond(){
 /*!
     @brief  get the current minutes as int
 */
-int ESP32Time::getMinute(){
+int ESP32Time::getMinute() const {
 	struct tm timeinfo = getTimeStruct();
 	return timeinfo.tm_min;
 }
@@ -280,7 +280,7 @@ int ESP32Time::getMinute(){
 			true = 24 hour mode (0-23)
 			false = 12 hour mode (1-12)
 */
-int ESP32Time::getHour(bool mode){
+int ESP32Time::getHour(bool mode) const {
 	struct tm timeinfo = getTimeStruct();
 	if (mode)
 	{
@@ -311,7 +311,7 @@ int ESP32Time::getHour(bool mode){
 			true = lowercase
 			false = uppercase
 */
-String ESP32Time::getAmPm(bool lowercase){
+String ESP32Time::getAmPm(bool lowercase) const {
 	struct tm timeinfo = getTimeStruct();
 	if (timeinfo.tm_hour >= 12)
 	{
@@ -340,7 +340,7 @@ String ESP32Time::getAmPm(bool lowercase){
 /*!
     @brief  get the current day as int (1-31)
 */
-int ESP32Time::getDay(){
+int ESP32Time::getDay() const {
 	struct tm timeinfo = getTimeStruct();
 	return timeinfo.tm_mday;
 }
@@ -348,7 +348,7 @@ int ESP32Time::getDay(){
 /*!
     @brief  get the current day of week as int (0-6)
 */
-int ESP32Time::getDayofWeek(){
+int ESP32Time::getDayofWeek() const {
 	struct tm timeinfo = getTimeStruct();
 	return timeinfo.tm_wday;
 }
@@ -356,7 +356,7 @@ int ESP32Time::getDayofWeek(){
 /*!
     @brief  get the current day of year as int (0-365)
 */
-int ESP32Time::getDayofYear(){
+int ESP32Time::getDayofYear() const {
 	struct tm timeinfo = getTimeStruct();
 	return timeinfo.tm_yday;
 }
@@ -364,7 +364,7 @@ int ESP32Time::getDayofYear(){
 /*!
     @brief  get the current month as int (0-11)
 */
-int ESP32Time::getMonth(){
+int ESP32Time::getMonth() const {
 	struct tm timeinfo = getTimeStruct();
 	return timeinfo.tm_mon;
 }
@@ -372,7 +372,7 @@ int ESP32Time::getMonth(){
 /*!
     @brief  get the current year as int
 */
-int ESP32Time::getYear(){
+int ESP32Time::getYear() const {
 	struct tm timeinfo = getTimeStruct();
 	return timeinfo.tm_year+1900;
 }

@@ -32,32 +32,32 @@ class ESP32Time {
 	public:
 		ESP32Time();
 		ESP32Time(long offset);
-		void setTime(unsigned long epoch = 1609459200, int ms = 0);	// default (1609459200) = 1st Jan 2021
-		void setTime(int sc, int mn, int hr, int dy, int mt, int yr, int ms = 0);
-		void setTimeStruct(tm t);
-		tm getTimeStruct();
-		String getTime(String format);
+		void setTime(unsigned long epoch = 1609459200, int ms = 0) const;	// default (1609459200) = 1st Jan 2021
+		void setTime(int sc, int mn, int hr, int dy, int mt, int yr, int ms = 0) const;
+		void setTimeStruct(tm t) const;
+		tm getTimeStruct() const;
+		String getTime(String format) const;
 		
-		String getTime();
-		String getDateTime(bool mode = false);
-		String getTimeDate(bool mode = false);
-		String getDate(bool mode = false);
-		String getAmPm(bool lowercase = false);
+		String getTime() const;
+		String getDateTime(bool mode = false) const;
+		String getTimeDate(bool mode = false) const;
+		String getDate(bool mode = false) const;
+		String getAmPm(bool lowercase = false) const;
 		
-		unsigned long getEpoch();
-		unsigned long getMillis();
-		unsigned long getMicros();
-		int getSecond();
-		int getMinute();
-		int getHour(bool mode = false);
-		int getDay();
-		int getDayofWeek();
-		int getDayofYear();
-		int getMonth();
-		int getYear();
+		unsigned long getEpoch() const;
+		unsigned long getMillis() const;
+		unsigned long getMicros() const;
+		int getSecond() const;
+		int getMinute() const;
+		int getHour(bool mode = false) const;
+		int getDay() const;
+		int getDayofWeek() const;
+		int getDayofYear() const;
+		int getMonth() const;
+		int getYear() const;
 		
 		long offset = 0;
-		unsigned long getLocalEpoch();
+		unsigned long getLocalEpoch() const;
 		
 		
 
